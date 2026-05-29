@@ -1,6 +1,7 @@
 package edu.metrostate.ics342.mediatracker.ui.library
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import edu.metrostate.ics342.mediatracker.data.FakeMediaRepository
 import edu.metrostate.ics342.mediatracker.data.model.LibraryItem
 import edu.metrostate.ics342.mediatracker.data.model.LibraryStatus
@@ -26,7 +27,7 @@ class LibraryViewModel : ViewModel() {
     }
 
     fun loadLibrary() {
-        GlobalScope.launch {
+        viewModelScope.launch {
             _isLoading.value = true
             _libraryItems.value = FakeMediaRepository.libraryItems
             _isLoading.value = false
